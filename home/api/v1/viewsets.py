@@ -1,3 +1,11 @@
+from rest_framework import viewsets
+from home.models import Exercises, Workout_Exercises, Workouts
+from .serializers import (
+    ExercisesSerializer,
+    Workout_ExercisesSerializer,
+    WorkoutsSerializer,
+)
+from rest_framework import authentication
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.viewsets import ModelViewSet, ViewSet
 from rest_framework.authtoken.models import Token
@@ -28,3 +36,30 @@ class LoginViewSet(ViewSet):
         token, created = Token.objects.get_or_create(user=user)
         user_serializer = UserSerializer(user)
         return Response({"token": token.key, "user": user_serializer.data})
+
+
+class WorkoutsViewSet(viewsets.ModelViewSet):
+    serializer_class = WorkoutsSerializer
+    authentication_classes = (
+        authentication.SessionAuthentication,
+        authentication.TokenAuthentication,
+    )
+    queryset = Workouts.objects.all()
+
+
+class ExercisesViewSet(viewsets.ModelViewSet):
+    serializer_class = ExercisesSerializer
+    authentication_classes = (
+        authentication.SessionAuthentication,
+        authentication.TokenAuthentication,
+    )
+    queryset = Exercises.objects.all()
+
+
+class Workout_ExercisesViewSet(viewsets.ModelViewSet):
+    serializer_class = Workout_ExercisesSerializer
+    authentication_classes = (
+        authentication.SessionAuthentication,
+        authentication.TokenAuthentication,
+    )
+    queryset = Workout_Exercises.objects.all()
