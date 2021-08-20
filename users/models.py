@@ -23,6 +23,18 @@ class User(AbstractUser):
         blank=True,
         max_length=255,
     )
+    trainer = models.OneToOneField(
+        "users.Trainer",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="user_trainer",
+    )
 
     def get_absolute_url(self):
         return reverse("users:detail", kwargs={"username": self.username})
+
+
+class Trainer(models.Model):
+    "Generated Model"
+    name = models.TextField()

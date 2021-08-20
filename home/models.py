@@ -5,6 +5,13 @@ from django.db import models
 class Workouts(models.Model):
     "Generated Model"
     name = models.TextField()
+    trainer = models.OneToOneField(
+        "users.Trainer",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="workouts_trainer",
+    )
 
 
 class Exercises(models.Model):
@@ -45,8 +52,8 @@ class Workout_Assignments(models.Model):
     )
     user = models.OneToOneField(
         "users.User",
-        on_delete=models.CASCADE,
         null=True,
         blank=True,
+        on_delete=models.CASCADE,
         related_name="workout_assignments_user",
     )
