@@ -1,7 +1,8 @@
 from rest_framework import viewsets
-from home.models import Exercises, Workout_Exercises, Workouts
+from home.models import Exercises, Workout_Assignments, Workout_Exercises, Workouts
 from .serializers import (
     ExercisesSerializer,
+    Workout_AssignmentsSerializer,
     Workout_ExercisesSerializer,
     WorkoutsSerializer,
 )
@@ -63,3 +64,12 @@ class Workout_ExercisesViewSet(viewsets.ModelViewSet):
         authentication.TokenAuthentication,
     )
     queryset = Workout_Exercises.objects.all()
+
+
+class Workout_AssignmentsViewSet(viewsets.ModelViewSet):
+    serializer_class = Workout_AssignmentsSerializer
+    authentication_classes = (
+        authentication.SessionAuthentication,
+        authentication.TokenAuthentication,
+    )
+    queryset = Workout_Assignments.objects.all()

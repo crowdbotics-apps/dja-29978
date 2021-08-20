@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from home.models import Exercises, Workout_Exercises, Workouts
+from home.models import Exercises, Workout_Assignments, Workout_Exercises, Workouts
 from django.http import HttpRequest
 from django.utils.translation import ugettext_lazy as _
 from allauth.account import app_settings as allauth_settings
@@ -91,4 +91,10 @@ class ExercisesSerializer(serializers.ModelSerializer):
 class Workout_ExercisesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Workout_Exercises
+        fields = "__all__"
+
+
+class Workout_AssignmentsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Workout_Assignments
         fields = "__all__"

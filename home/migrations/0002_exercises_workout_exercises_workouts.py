@@ -9,32 +9,72 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('home', '0001_load_initial_data'),
+        ("home", "0001_load_initial_data"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Exercises',
+            name="Exercises",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.TextField()),
-                ('description', models.TextField(blank=True, null=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.TextField()),
+                ("description", models.TextField(blank=True, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Workouts',
+            name="Workouts",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.TextField()),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.TextField()),
             ],
         ),
         migrations.CreateModel(
-            name='Workout_Exercises',
+            name="Workout_Exercises",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('reps', models.IntegerField(blank=True, null=True)),
-                ('exercise', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='workout_exercises_exercise', to='home.Exercises')),
-                ('workout', models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='workout_exercises_workout', to='home.Workouts')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("reps", models.IntegerField(blank=True, null=True)),
+                (
+                    "exercise",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="workout_exercises_exercise",
+                        to="home.Exercises",
+                    ),
+                ),
+                (
+                    "workout",
+                    models.OneToOneField(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="workout_exercises_workout",
+                        to="home.Workouts",
+                    ),
+                ),
             ],
         ),
     ]
